@@ -1,0 +1,130 @@
+/**
+ * NoSpace Code Blocks Styles
+ * Custom layout and toolbar styling (syntax highlighting is handled by Prism theme)
+ */
+pre[class*="language-"] {
+    padding-top: 1.5rem;
+}
+
+/* Code toolbar wrapper — clips all toolbar items to block boundaries */
+.code-toolbar {
+    z-index: 0;
+}
+
+/* Base toolbar container */
+.code-toolbar > .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0; /* Ensures it doesn't push content, just holds absolute children */
+    pointer-events: none; /* Allows clicking through empty space */
+    z-index: 1;
+    opacity: 100 !important;
+}
+
+/* Language label badge (stays inside code block boundaries) */
+.code-toolbar > .toolbar > .toolbar-item:first-child > span {
+    display: block !important;
+    position: relative !important;
+    top: -0.5rem;
+    left: 0rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    pointer-events: auto;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    opacity: 0.85;
+    z-index: 1;
+}
+
+/* Copy button */
+.code-toolbar .copy-to-clipboard-button {
+    position: absolute;
+    top: 0.2rem !important;
+    right: 0.5rem !important;
+    pointer-events: auto;
+    padding: 0.3rem 0.8rem !important;
+    opacity: 0;
+    transition: opacity 0.2s ease, background-color 0.3s ease;
+}
+
+.code-toolbar:hover .copy-to-clipboard-button {
+    opacity: 1;
+}
+
+/* Copy success state with animation feedback */
+.code-toolbar .copy-to-clipboard-button[data-copied="true"] {
+    background: #4caf50 !important;
+    border-color: #4caf50 !important;
+    opacity: 1;
+    animation: nsprism-copy-pulse 0.5s ease-out;
+}
+
+@keyframes nsprism-copy-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Copy button text feedback animation */
+.code-toolbar .copy-button-text-feedback {
+    display: inline;
+    margin-left: 0.3rem;
+    animation: nsprism-fade-in-out 1.5s ease-out forwards;
+}
+
+@keyframes nsprism-fade-in-out {
+    0% { opacity: 1; transform: translateY(0); }
+    70% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-8px); }
+}
+
+/* ========================================
+   Inline Code styling (outside blocks)
+   ======================================== */
+:not(pre) > code[class*="language-"],
+:not(pre) > code {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* Dark mode tweaks for inline code */
+html[data-theme="dark"] :not(pre) > code {
+    background: rgba(139, 123, 234, 0.15);
+    color: #8b7bea;
+}
+
+/* ========================================
+   Scrollbar Styling
+   ======================================== */
+pre[class*="language-"]::-webkit-scrollbar,
+pre:has(> code[class*="language-"])::-webkit-scrollbar {
+    height: 8px;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 768px) {
+    pre[class*="language-"],
+    pre:has(> code[class*="language-"]) {
+        padding: 1rem 0.75rem 1rem 3rem !important;
+        margin: 1.5rem 0;
+        border-radius: 6px;
+    }
+    
+    .line-numbers .line-numbers-rows {
+        width: 2.5rem;
+    }
+}

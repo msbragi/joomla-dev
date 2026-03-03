@@ -1,0 +1,5 @@
+# Built packages
+*.zip
+
+# Local deployment script (contains hardcoded paths)
+plugins/nsprism/deploy.sh

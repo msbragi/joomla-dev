@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="4.0" type="plugin" group="system" method="upgrade">
+    <name>PLG_SYSTEM_NSPRISM</name>
+    <author>nospace.net</author>
+    <authorEmail>m.sbragi@nospace.net</authorEmail>
+    <authorUrl>https://www.nospace.net</authorUrl>
+    <creationDate>February 2026</creationDate>
+    <copyright>(C) 2026 Nospace. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <version>1.0.0</version>
+    <description>PLG_SYSTEM_NSPRISM_DESCRIPTION</description>
+    <scriptfile>script.php</scriptfile>
+    <files>
+        <filename plugin="nsprism">nsprism.php</filename>
+        <filename>script.php</filename>
+        <filename>LICENSE.txt</filename>
+        <folder>fields</folder>
+        <folder>language</folder>
+    </files>
+    <languages>
+        <language tag="en-GB">language/en-GB/plg_system_nsprism.ini</language>
+        <language tag="en-GB">language/en-GB/plg_system_nsprism.sys.ini</language>
+        <language tag="it-IT">language/it-IT/plg_system_nsprism.ini</language>
+        <language tag="it-IT">language/it-IT/plg_system_nsprism.sys.ini</language>
+    </languages>
+    <media destination="plg_system_nsprism" folder="media">
+        <folder>css</folder>
+        <folder>js</folder>
+    </media>
+    <config>
+        <fields name="params" addfieldpath="/plugins/system/nsprism/fields">
+            <fieldset name="basic">
+                <field name="load_css"
+                    type="radio"
+                    label="PLG_SYSTEM_NSPRISM_FIELD_LOAD_CSS_LABEL"
+                    layout="joomla.form.field.radio.switcher"
+                    default="1"
+                    description="PLG_SYSTEM_NSPRISM_FIELD_LOAD_CSS_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="load_layout"
+                    type="radio"
+                    label="PLG_SYSTEM_NSPRISM_FIELD_LOAD_LAYOUT_LABEL"
+                    layout="joomla.form.field.radio.switcher"
+                    default="1"
+                    description="PLG_SYSTEM_NSPRISM_FIELD_LOAD_LAYOUT_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="use_minified"
+                    type="radio"
+                    label="PLG_SYSTEM_NSPRISM_FIELD_USE_MINIFIED_LABEL"
+                    layout="joomla.form.field.radio.switcher"
+                    default="1"
+                    description="PLG_SYSTEM_NSPRISM_FIELD_USE_MINIFIED_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="theme_css"
+                    type="filelist"
+                    label="PLG_SYSTEM_NSPRISM_FIELD_THEME_CSS_LABEL"
+                    description="PLG_SYSTEM_NSPRISM_FIELD_THEME_CSS_DESC"
+                    directory="media/plg_system_nsprism/css"
+                    filter="\.css$"
+                    exclude="code-blocks\.css"
+                    default="dark.css"
+                    stripext="" />
+                <field name="enable_classes" type="checkboxes" label="PLG_SYSTEM_NSPRISM_FIELD_ENABLE_CLASSES_LABEL" description="PLG_SYSTEM_NSPRISM_FIELD_ENABLE_CLASSES_DESC" default="line-numbers,match-braces,show-language">
+                    <option value="line-numbers">PLG_SYSTEM_NSPRISM_CLASS_LINE_NUMBERS</option>
+                    <option value="match-braces">PLG_SYSTEM_NSPRISM_CLASS_MATCH_BRACES</option>
+                    <option value="rainbow-braces">PLG_SYSTEM_NSPRISM_CLASS_RAINBOW_BRACES</option>
+                    <option value="command-line">PLG_SYSTEM_NSPRISM_CLASS_COMMAND_LINE</option>
+                    <option value="show-language">PLG_SYSTEM_NSPRISM_CLASS_SHOW_LANGUAGE</option>
+                    <option value="diff-highlight">PLG_SYSTEM_NSPRISM_CLASS_DIFF_HIGHLIGHT</option>
+                </field>
+                <field name="patch_tinymce_langs"
+                    type="radio"
+                    label="PLG_SYSTEM_NSPRISM_FIELD_PATCH_TINYMCE_LANGS_LABEL"
+                    layout="joomla.form.field.radio.switcher"
+                    default="1"
+                    description="PLG_SYSTEM_NSPRISM_FIELD_PATCH_TINYMCE_LANGS_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="languages_json"
+                    type="languagesjson"
+                    label="PLG_SYSTEM_NSPRISM_FIELD_LANGUAGES_JSON_LABEL"
+                    description="PLG_SYSTEM_NSPRISM_FIELD_LANGUAGES_JSON_DESC"
+                    hint="PLG_SYSTEM_NSPRISM_FIELD_LANGUAGES_JSON_HINT"
+                    rows="15"
+                    default='[{"text": "HTML/XML", "value": "markup"},{"text": "CSS", "value": "css"},{"text": "JavaScript", "value": "javascript"},{"text": "TypeScript", "value": "typescript"},{"text": "PHP", "value": "php"},{"text": "Python", "value": "python"},{"text": "Bash", "value": "bash"},{"text": "SQL", "value": "sql"},{"text": "JSON", "value": "json"},{"text": "Docker", "value": "docker"},{"text": "Java", "value": "java"},{"text": "Go", "value": "go"},{"text": "Rust", "value": "rust"}]'
+                    filter="raw"/>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
