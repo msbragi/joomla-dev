@@ -40,22 +40,26 @@ if [[ -n "$(git status --porcelain)" ]]; then
     exit 1
 fi
 
+# --- Plugin identity (derived from directory name) ---
+PLUGIN_NAME="$(basename "$SRC_DIR")"
+MANIFEST="$SRC_DIR/${PLUGIN_NAME}.xml"
+
 # --- Version ---
-VERSION=$(grep -oP '(?<=<version>)[^<]+' "$SRC_DIR/nsprism.xml")
-TAG="v${VERSION}"
-ZIP_NAME="plg_system_nsprism_v${VERSION}.zip"
+VERSION=$(grep -oP '(?<=<version>)[^<]+' "$MANIFEST")
+TAG="${PLUGIN_NAME}-v${VERSION}"
+ZIP_NAME="plg_system_${PLUGIN_NAME}_v${VERSION}.zip"
 ZIP_PATH="$SRC_DIR/$ZIP_NAME"
 
-echo "Releasing NsPrism Plugin..."
+echo "Releasing plugin: $PLUGIN_NAME"
 echo "Version : $VERSION"
 echo "Tag     : $TAG"
 echo "Package : $ZIP_NAME"
 echo ""
 
 if $DRY_RUN; then
-    echo "[dry-run] Would build $ZIP_NAME"
-    echo "[dry-run] Would create tag $TAG and push to origin"
-    echo "[dry-run] Would create GitHub release $TAG with asset $ZIP_NAME"
+    echo "[dry-run] Would build   : $ZIP_NAME"
+    echo "[dry-run] Would tag     : $TAG"
+    echo "[dry-run] Would release : $TAG with asset $ZIP_NAME"
     exit 0
 fi
 
@@ -82,7 +86,7 @@ git push origin "$TAG"
 # --- GitHub release ---
 echo "Creating GitHub release $TAG..."
 gh release create "$TAG" "$ZIP_PATH" \
-    --title "$TAG" \
+    --title "plg_system_${PLUGIN_NAME} v${VERSION}" \
     --generate-notes
 
 echo ""

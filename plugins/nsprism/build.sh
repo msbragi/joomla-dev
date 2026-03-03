@@ -12,9 +12,13 @@ set -e
 SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_DIR="/mnt/c/Data/_Backups"
 
+# --- Plugin identity (derived from directory name) ---
+PLUGIN_NAME="$(basename "$SRC_DIR")"
+MANIFEST="$SRC_DIR/${PLUGIN_NAME}.xml"
+
 # Read version from the manifest (e.g. <version>1.0.2</version>)
-VERSION=$(grep -oP '(?<=<version>)[^<]+' "$SRC_DIR/nsprism.xml")
-ZIP_NAME="plg_system_nsprism_v${VERSION}.zip"
+VERSION=$(grep -oP '(?<=<version>)[^<]+' "$MANIFEST")
+ZIP_NAME="plg_system_${PLUGIN_NAME}_v${VERSION}.zip"
 ZIP_PATH="$SRC_DIR/$ZIP_NAME"
 
 # --- Build ---
