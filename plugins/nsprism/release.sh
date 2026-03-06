@@ -115,3 +115,7 @@ gh release create "$TAG" "$ZIP_PATH" "$SHA256_PATH" \
 
 echo ""
 echo "Released: $(gh release view "$TAG" --json url -q .url)"
+
+# --- Cleanup local artifacts ---
+rm -f "$ZIP_PATH" "$SHA256_PATH"
+echo "Removed local artifacts: $ZIP_NAME, $SHA256_NAME"

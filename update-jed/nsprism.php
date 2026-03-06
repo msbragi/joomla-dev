@@ -28,7 +28,8 @@ const GITHUB_REPO  = 'msbragi/joomla-dev';
 const GITHUB_TOKEN = ''; // Optional: personal access token for higher rate limits
 
 // Extension info page shown in Joomla's update manager
-const INFO_URL = 'https://www.nospace.net/en/toolbox/prism-js-joomla-plugin#release-notes';
+const INFO_URL = 'https://www.nospace.net/en/toolbox/prism-js-joomla-plugin#release-note';
+const CHANGE_LOG_URL = 'https://github.com/msbragi/joomla-dev/releases';
 
 // Directory for checksum cache files (must be writable by the web server)
 const CACHE_DIR = __DIR__ . '/cache';
@@ -37,23 +38,39 @@ $options = [
 
     // ------------------------------------------------------------------
     // JED / XML manifest metadata
+    //
+    // Convention:
+    //   'key' => 'string'             → <key>string</key>
+    //   'key' => ['@attr'=>'v', ...]  → <key attr="v">...</key>
+    //   'key' => ['@text'=>'t', ...]  → text content of the element
+    //   'key' => [['@a'=>'1'],[...]]  → repeated <key a="1"/> elements
+    //   {{placeholders}} are replaced per-release by JedHelper
     // ------------------------------------------------------------------
     'jed' => [
         'name'          => 'Nsprism - Prism Code Highlighter',
+        'description'   => '{{description}}',
         'element'       => 'nsprism',
         'type'          => 'plugin',
-        'client'        => '0',         // 0 = site
+        'folder'        => 'system',
+        'client'        => 'site',
+        'version'       => '{{version}}',
+        'infourl'       => ['@title' => 'Documentation and Release notes', '@text' => INFO_URL],
+        'changelogurl'  => CHANGE_LOG_URL,
+        'downloads'     => [
+            'downloadurl' => [
+                '@type'   => 'full',
+                '@format' => 'zip',
+                '@sha256' => '{{checksum}}',
+                '@text'   => '{{downloadUrl}}',
+            ],
+        ],
+        'tags'          => ['tag' => 'stable'],
         'maintainer'    => 'nospace.net',
         'maintainerurl' => 'https://www.nospace.net',
-        'infourl' => [
-            'value' => INFO_URL,
-            'attrs' => ['title' => 'Documentation and release notes'],
-        ],
         'targetplatform' => [
-            'attrs' => ['name' => 'joomla', 'version' => '4.*|5.*|6.*'],
-        ],
-        'downloads' => [
-            'attrs' => ['type' => 'full', 'format' => 'zip'],
+            ['@name' => 'joomla', '@version' => '4.*'],
+            ['@name' => 'joomla', '@version' => '5.*'],
+            ['@name' => 'joomla', '@version' => '6.*'],
         ],
     ],
 

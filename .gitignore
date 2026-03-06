@@ -1,5 +1,9 @@
-# Built packages
+# Built packages (uploaded to GitHub releases — not committed)
 *.zip
+*.sha256
 
 # Local deployment script (contains hardcoded paths)
 plugins/nsprism/deploy.sh
+
+# VPS deployment script (contains server credentials)
+update-jed/update-vps.sh

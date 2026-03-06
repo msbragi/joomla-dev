@@ -11,7 +11,7 @@
     <description>PLG_SYSTEM_NSPRISM_DESCRIPTION</description>
     <scriptfile>script.php</scriptfile>
     <updateservers>
-        <server type="extension" name="nsprism Update Site" priority="1">http://www.nospace.lan/update-jed/nsprism.php</server>
+        <server type="extension" name="nsprism Update Site" priority="1">https://www.nospace.net/update-jed/nsprism.php</server>
     </updateservers>
     <files>
         <filename plugin="nsprism">nsprism.php</filename>
