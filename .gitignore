@@ -7,3 +7,4 @@ plugins/nsprism/deploy.sh
 
 # VPS deployment script (contains server credentials)
 update-jed/update-vps.sh
+update-jed/update-local.sh
