@@ -7,11 +7,11 @@
     <creationDate>February 2026</creationDate>
     <copyright>(C) 2026 Nospace. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-    <version>1.0.1</version>
+    <version>1.0.0</version>
     <description>PLG_SYSTEM_NSPRISM_DESCRIPTION</description>
     <scriptfile>script.php</scriptfile>
     <updateservers>
-        <server type="extension" name="nsprism Update Site" priority="1">https://www.nospace.net/update-jed/nsprism.php</server>
+        <server type="extension" name="nsprism Update Site" priority="1">http://www.nospace.lan/update-jed/nsprism.php</server>
     </updateservers>
     <files>
         <filename plugin="nsprism">nsprism.php</filename>
