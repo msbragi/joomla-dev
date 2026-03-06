@@ -28,7 +28,7 @@ const GITHUB_REPO  = 'msbragi/joomla-dev';
 const GITHUB_TOKEN = ''; // Optional: personal access token for higher rate limits
 
 // Extension info page shown in Joomla's update manager
-const INFO_URL = 'https://www.nospace.net/en/toolbox/prism-js-joomla-plugin';
+const INFO_URL = 'https://www.nospace.net/en/toolbox/prism-js-joomla-plugin#release-notes';
 
 // Directory for checksum cache files (must be writable by the web server)
 const CACHE_DIR = __DIR__ . '/cache';
